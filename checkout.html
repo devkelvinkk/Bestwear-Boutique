@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - BestwearMall</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>BestwearMall</h1>
+    <nav class="top-nav">
+      <a href="index.html">Home</a>
+      <a href="checkout.html">Checkout</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </header>
+
+  <main id="checkout-container">
+    <h2>Checkout</h2>
+
+    <div id="checkout-summary">
+      <div id="checkout-items"></div>
+      <p id="total-amount"><strong>Total:</strong> Ksh 0.00</p>
+    </div>
+
+    <form id="checkout-form">
+      <label for="name">Full Name</label>
+      <input id="name" type="text" required>
+
+      <label for="email">Email</label>
+      <input id="email" type="email" required>
+
+      <label for="address">Delivery Address</label>
+      <textarea id="address" rows="3" required></textarea>
+
+      <button id="confirm-order" type="submit">Confirm Order</button>
+    </form>
+  </main>
+
+  <script>
+    // Minimal checkout page script that reads cart from localStorage and shows totals (won't interfere with main script)
+    function formatKsh(amount) {
+      return `Ksh ${Number(amount).toLocaleString('en-KE', { minimumFractionDigits: 2 })}`;
+    }
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const checkoutItems = document.getElementById('checkout-items');
+    const totalAmount = document.getElementById('total-amount');
+
+    let total = 0;
+    if (cart.length === 0) {
+      checkoutItems.innerHTML = '<p>Your cart is empty.</p>';
+    } else {
+      cart.forEach(item => {
+        const p = document.createElement('p');
+        p.textContent = `${item.name} — ${formatKsh(item.price)} × ${item.quantity}`;
+        checkoutItems.appendChild(p);
+        total += item.price * item.quantity;
+      });
+    }
+    totalAmount.innerHTML = `<strong>Total:</strong> ${formatKsh(total.toFixed(2))}`;
+
+    document.getElementById('checkout-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert(`Order confirmed! Total: ${formatKsh(total.toFixed(2))}`);
+      // Clear cart on confirmation
+      localStorage.removeItem('cart');
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

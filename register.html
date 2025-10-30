@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | BestwearMall</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background-color: #0b132b;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .register-container {
+      background: #1c2541;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      width: 350px;
+      text-align: center;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    a {
+      color: #9ad1f3;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <h2>Create Account</h2>
+    <input type="text" id="reg-name" placeholder="Full Name" required />
+    <input type="email" id="reg-email" placeholder="Email Address" required />
+    <input type="password" id="reg-password" placeholder="Password" required />
+    <button id="register-btn">Register</button>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+     <a href="index.html" class="back-home">← Back to Shop</a>
+  </div>
+
+  <script>
+    document.getElementById('register-btn').addEventListener('click', () => {
+      const name = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const password = document.getElementById('reg-password').value.trim();
+
+      if (!name || !email || !password) {
+        alert('⚠️ Please fill in all fields.');
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+
+      if (users.find(u => u.email === email)) {
+        alert('⚠️ This email is already registered. Please log in.');
+        window.location.href = 'login.html';
+        return;
+      }
+
+      users.push({ name, email, password });
+      localStorage.setItem('users', JSON.stringify(users));
+
+      alert('✅ Registration successful! You can now log in.');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

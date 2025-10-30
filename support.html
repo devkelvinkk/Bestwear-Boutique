@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BestwearMall | Support</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ==== Support Page Styling ==== */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #e6ebf1);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #1b263b;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .support-container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #1b263b;
+      margin-bottom: 25px;
+    }
+
+    .contact-info {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .contact-info p {
+      font-size: 16px;
+      color: #444;
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 16px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    /* ==== Live Chat Section ==== */
+    .chat-box {
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f9fafc;
+    }
+
+    .chat-header {
+      background: #1b263b;
+      color: white;
+      padding: 12px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .chat-messages {
+      height: 350px;
+      overflow-y: auto;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ddd;
+      background: #fff;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .chat-input button {
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 16px;
+      margin-left: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .chat-input button:hover {
+      background: #0056b3;
+    }
+
+    .user-message, .bot-message {
+      max-width: 70%;
+      padding: 8px 12px;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .user-message {
+      align-self: flex-end;
+      background: #007bff;
+      color: white;
+      border-radius: 10px 10px 0 10px;
+    }
+
+    .bot-message {
+      align-self: flex-start;
+      background: #e5e5ea;
+      border-radius: 10px 10px 10px 0;
+    }
+
+    .timestamp {
+      font-size: 11px;
+      color: #777;
+      margin-top: 2px;
+      text-align: right;
+    }
+
+    .typing {
+      align-self: flex-start;
+      font-style: italic;
+      color: #777;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>BestwearMall Support</h1>
+  </header>
+
+  <div class="support-container">
+    <h2>How Can We Help You?</h2>
+    <div class="contact-info">
+      <p>📞 Phone: +254 700 123 456</p>
+      <p>📧 Email: support@bestwearmall.com</p>
+      <p>🕐 Available: Monday - Saturday, 8AM - 8PM</p>
+      <a href="index.html" class="back-home">← Back to Home</a>
+    </div>
+
+    <!-- Live Chat Box -->
+    <div class="chat-box">
+      <div class="chat-header">💬 Live Chat with Bestwear Assistant</div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Type your message..." />
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const sendBtn = document.getElementById("send-btn");
+    const userInput = document.getElementById("user-input");
+    const chatMessages = document.getElementById("chat-messages");
+
+    const responses = {
+      hello: "Hi there 👋! How can I help you today?",
+      price: "💰 You can view all prices directly on our shop page.",
+      hours: "🕐 We’re open Monday to Saturday, 8AM - 8PM.",
+      shipping: "🚚 We deliver within 2–3 days. Free for orders above Ksh 5,000!",
+      refund: "💸 We accept refunds within 7 days of delivery for unused items.",
+      default: "🤖 I'm not sure I understand. Could you rephrase your question?"
+    };
+
+    // Load saved messages from localStorage
+    window.onload = function() {
+      const savedChat = JSON.parse(localStorage.getItem("chatHistory")) || [];
+      if (savedChat.length === 0) {
+        addMessage("Hello! 👋 Welcome to BestwearMall support.", "bot-message");
+      } else {
+        savedChat.forEach(msg => addMessage(msg.text, msg.className, msg.time, false));
+      }
+    };
+
+    // Add a new message
+    function addMessage(content, className, time = null, save = true) {
+      const msg = document.createElement("div");
+      msg.className = className;
+      msg.innerHTML = `
+        ${content}
+        <div class="timestamp">${time || new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+      `;
+      chatMessages.appendChild(msg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      if (save) saveMessage(content, className);
+    }
+
+    // Save chat to localStorage
+    function saveMessage(text, className) {
+      const chat = JSON.parse(localStorage.getItem("chatHistory")) || [];
+      chat.push({
+        text,
+        className,
+        time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+      });
+      localStorage.setItem("chatHistory", JSON.stringify(chat));
+    }
+
+    // Typing animation
+    function showTyping() {
+      const typing = document.createElement("div");
+      typing.className = "typing";
+      typing.textContent = "Bestwear Assistant is typing...";
+      chatMessages.appendChild(typing);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      return typing;
+    }
+
+    // Send message
+    sendBtn.addEventListener("click", () => {
+      const text = userInput.value.trim();
+      if (text === "") return;
+      addMessage(text, "user-message");
+
+      userInput.value = "";
+      const typing = showTyping();
+
+      setTimeout(() => {
+        typing.remove();
+        const reply = responses[text.toLowerCase()] || responses.default;
+        addMessage(reply, "bot-message");
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

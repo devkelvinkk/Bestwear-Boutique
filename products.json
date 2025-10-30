@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Classic Cotton Shirt",
+    "price": 3200,
+    "image": "https://images.unsplash.com/photo-1713881587420-113c1c43e28a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1974",
+    "category": "clothes",
+    "stock": 12,
+    "rating": 4.5
+  },
+  {
+    "id": 2,
+    "name": "Elegant Summer Dress",
+    "price": 6990,
+    "image": "https://images.unsplash.com/photo-1758539197771-4d98e9c78f87?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "category": "clothes",
+    "stock": 8,
+    "rating": 4.3
+  },
+  {
+    "id": 3,
+    "name": "Premium Leather Handbag",
+    "price": 28900,
+    "image": "https://images.unsplash.com/photo-1657603628320-5c76d95ed7c1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170",
+    "category": "accessories",
+    "stock": 6,
+    "rating": 4.7
+  },
+  {
+    "id": 4,
+    "name": "Flower with Pot(Home Decor Accent)",
+    "price": 14900,
+    "image": "https://images.unsplash.com/photo-1757259246003-3cb77775d5c7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "category": "homedecor",
+    "stock": 10,
+    "rating": 4.4
+  },
+  {
+    "id": 5,
+    "name": "Corduroy Vans",
+    "price": 12900,
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=698",
+    "category": "footwear",
+    "stock": 20,
+    "rating": 4.2
+  },
+  {
+    "id": 6,
+    "name": "Classic Leather Belt",
+    "price": 2900,
+    "image": "https://images.unsplash.com/photo-1664285612706-b32633c95820?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=958",
+    "category": "accessories",
+    "stock": 30,
+    "rating": 4.1
+  },
+  {
+    "id": 7,
+    "name": "Premium Sneakers (Airforce)",
+    "price": 3800,
+    "image": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "category": "footwear",
+    "stock": 5,
+    "rating": 4.5
+  },
+  {
+    "id": 8,
+    "name": "MEN PUFF JACKET",
+    "price": 1200,
+    "image": "https://img.kilimall.com/c/obs/seller/100009417/goods_image/250814084855_2558fe817fb88ea45af9f2ad4c865e8a.jpg?x-image-process=image/format,webp/resize,w_720#",
+    "category": "clothes",
+    "stock": 50,
+    "rating": 4.0
+  }
+]

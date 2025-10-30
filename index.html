@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BestwearMall</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ====== Header ====== -->
+  <header>
+    <h1>BestwearMall</h1>
+
+    <nav class="top-nav">
+      <a href="index.html">Home</a>
+      <a href="checkout.html">Checkout</a>
+      <a href="support.html">Support</a>
+    </nav>
+
+    <div class="header-actions">
+      <button id="dark-mode-toggle" title="Toggle dark mode">🌙</button>
+      <button id="cart" title="Open cart">🛒 Cart (<span id="cart-count">0</span>)</button>
+    </div>
+     <div id="user-info" style="margin-right:15px;"></div>
+     
+
+  </header>
+
+  <!-- ====== Filter Bar with Search ====== -->
+  <section id="filter-bar">
+    <input type="text" id="search-input" placeholder="Search for products...">
+    <div id="filter-buttons">
+      <button class="filter-btn active" data-category="all">All</button>
+      <button class="filter-btn" data-category="clothes">Clothes</button>
+      <button class="filter-btn" data-category="accessories">Accessories</button>
+      <button class="filter-btn" data-category="footwear">Footwear</button>
+      <button class="filter-btn" data-category="homedecor">HomeDecor</button>
+    </div>
+  </section>
+
+  <!-- ====== Product List ====== -->
+  <main id="product-list"></main>
+
+  <!-- ====== Cart Sidebar ====== -->
+  <aside id="cart-sidebar">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div id="cart-total"></div>
+    <button id="place-order">Place Order</button>
+    <button id="close-cart">Close</button>
+  </aside>
+
+  <!-- ====== Product Details Modal ====== -->
+  <div id="product-modal">
+    <div id="modal-content"></div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" style="position:fixed; bottom:20px; right:20px; background:#007bff; color:#fff; padding:10px 15px; border-radius:6px; display:none;"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
